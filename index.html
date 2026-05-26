@@ -1,148 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>OJT Progress Tracker</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- Header -->
   <header class="header">
-    <div class="header-inner">
-      <div class="logo-block">
-        <span class="logo-icon">⏳</span>
-        <div>
-          <div class="logo-title">OJT Tracker</div>
-        </div>
-      </div>
-      <div class="header-date" id="headerDate"></div>
-    </div>
+    <h1>OJT Progress Tracker</h1>
   </header>
 
-  <main class="main-layout">
+  <main class="container">
 
-    <!-- Left Sidebar -->
-    <aside class="sidebar">
+    <!-- DASHBOARD -->
+    <section class="dashboard">
 
-      <!-- Dashboard Summary -->
-      <section class="card summary-card">
-        <h2 class="section-label">Dashboard</h2>
-        <div class="stat-grid">
-          <div class="stat-item stat-total">
-            <span class="stat-num" id="statTotal">0</span>
-            <span class="stat-lbl">Total</span>
-          </div>
-          <div class="stat-item stat-pending">
-            <span class="stat-num" id="statPending">0</span>
-            <span class="stat-lbl">Pending</span>
-          </div>
-          <div class="stat-item stat-progress">
-            <span class="stat-num" id="statProgress">0</span>
-            <span class="stat-lbl">In Progress</span>
-          </div>
-          <div class="stat-item stat-done">
-            <span class="stat-num" id="statDone">0</span>
-            <span class="stat-lbl">Completed</span>
-          </div>
-        </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill" id="progressFill"></div>
-          </div>
-          <span class="progress-pct" id="progressPct">0% done</span>
-        </div>
-      </section>
-
-      <!-- Add Task Form -->
-      <section class="card form-card">
-        <h2 class="section-label">Add Task</h2>
-        <div class="form-group">
-          <label for="taskTitle">Task Title <span class="req">*</span></label>
-          <input type="text" id="taskTitle" placeholder="e.g. Daily standup report" />
-        </div>
-        <div class="form-group">
-          <label for="taskCategory">Category</label>
-          <select id="taskCategory">
-            <option value="Development">Development</option>
-            <option value="Design">Design</option>
-            <option value="Research">Research</option>
-            <option value="Documentation">Documentation</option>
-            <option value="Testing">Testing</option>
-            <option value="Meeting">Meeting</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="taskDueDate">Due Date</label>
-          <input type="date" id="taskDueDate" />
-        </div>
-        <div class="form-group">
-          <label for="taskStatus">Status</label>
-          <select id="taskStatus">
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </div>
-        <button class="btn-primary" id="addTaskBtn">+ Add Task</button>
-      </section>
-
-    </aside>
-
-    <!-- Main Content -->
-    <div class="content-area">
-
-      <!-- Filter Bar -->
-      <div class="filter-bar">
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-filter="All">All</button>
-          <button class="filter-tab" data-filter="Pending">Pending</button>
-          <button class="filter-tab" data-filter="In Progress">In Progress</button>
-          <button class="filter-tab" data-filter="Completed">Completed</button>
-        </div>
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search tasks…" />
+      <div class="card total">
+        <h2 id="statTotal">0</h2>
+        <p>Total Tasks</p>
       </div>
 
-      <!-- Task List -->
-      <section id="taskList" class="task-list">
-        <div class="empty-state" id="emptyState">
-          <div class="empty-icon">📋</div>
-          <p>No tasks yet. Add your first OJT task!</p>
-        </div>
-      </section>
+      <div class="card pending">
+        <h2 id="statPending">0</h2>
+        <p>Pending</p>
+      </div>
 
-      <!-- Notes Section -->
-      <section class="card notes-card">
-        <div class="notes-header">
-          <h2 class="section-label">Daily Notes</h2>
-          <div class="notes-tabs">
-            <button class="notes-tab active" data-note="learnings">Learnings</button>
-            <button class="notes-tab" data-note="feedback">Mentor Feedback</button>
-            <button class="notes-tab" data-note="errors">Error Log</button>
-          </div>
-        </div>
-        <textarea
-          id="notesArea"
-          class="notes-textarea"
-          placeholder="Write your daily learnings, mentor feedback, or errors here…"
-        ></textarea>
-        <div class="notes-footer">
-          <button class="btn-save-note" id="saveNoteBtn">Save Note</button>
-          <span class="save-confirm" id="saveConfirm">✓ Saved!</span>
-        </div>
-      </section>
+      <div class="card progress">
+        <h2 id="statProgress">0</h2>
+        <p>In Progress</p>
+      </div>
 
-    </div>
+      <div class="card completed">
+        <h2 id="statDone">0</h2>
+        <p>Completed</p>
+      </div>
+
+    </section>
+
+    <!-- PROGRESS BAR -->
+    <section class="progress-section">
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <p id="progressPct">0% Completed</p>
+
+    </section>
+
+    <!-- TASK FORM -->
+    <section class="task-form">
+
+      <h2>Add Daily Learning Task</h2>
+
+      <input type="text" id="taskTitle" placeholder="Task Title">
+
+      <input type="date" id="taskDate">
+
+      <select id="taskCategory">
+        <option>Development</option>
+        <option>Research</option>
+        <option>Testing</option>
+        <option>Documentation</option>
+      </select>
+
+      <select id="taskStatus">
+        <option>Pending</option>
+        <option>In Progress</option>
+        <option>Completed</option>
+      </select>
+
+      <button id="addTaskBtn">Add Task</button>
+
+    </section>
+
+    <!-- TASK LIST -->
+    <section id="taskList" class="task-list"></section>
+
+    <!-- NOTES -->
+    <section class="notes-section">
+
+      <h2>Daily Notes</h2>
+
+      <textarea
+        id="learningNotes"
+        placeholder="Learnings">
+      </textarea>
+
+      <textarea
+        id="errorNotes"
+        placeholder="Errors">
+      </textarea>
+
+      <textarea
+        id="feedbackNotes"
+        placeholder="Mentor Feedback">
+      </textarea>
+
+    </section>
+
   </main>
 
-  <footer class="footer">
-    <span>OJT Progress Tracker · Built for Students</span>
-  </footer>
-
   <script src="script.js"></script>
+
 </body>
 </html>
